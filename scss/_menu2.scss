@@ -1,0 +1,266 @@
+@import "./config";
+ion-icon{
+    color: $secondary1;
+    transform:scale(1.5);
+}
+// .logo_container{
+//     @include mQ(mid){content: url("../resources/svg/logoOrng.svg");}
+// }
+.navigation_section{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    padding: 30px 50px;
+    z-index: 9;
+    transition: 0.4s ease;
+    @include mQ(phone){
+        padding: 30px 25px;
+    }
+}
+nav{
+    height: 100vh;
+    width: 60%;
+    max-width: 500px;
+    position: fixed;
+    // right: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    transition: 0.4s ease-in;
+    // clip-path: circle(0% at 100% 25px);
+    @include mQ(big){
+        left: 100%;
+    }
+    @include mQ(tablet){
+        width: 100%;
+        height: calc(100vh - 70px);
+        right: 0;
+        clip-path: circle(0% at 100% 100%);
+    }
+}
+.menu{
+    margin: 70px 0 100px;
+    height: 50%;
+    width: 100%;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    li{
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transition: 1s ease;
+        // transform: translateY(-20px);
+        @include mQ(tablet){
+            transform: translateY(20px);
+        }
+        .nav_links{
+            display: inline-block;
+            padding: 10px 20px;
+            color: $secondary1;
+            transition: 0.4s ease-in-out;
+            &::after{
+                content: "";
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 3px;
+                width: 30px;
+                background-color: $secondary2;
+                opacity: 0;
+                transition: 0.4s ease-in-out;
+            }
+            ion-icon{
+                margin-right: 10px;
+            }
+        }
+        .nav_links_active::after,.nav_links:hover::after{
+            bottom: -10px;
+            opacity: 1;
+        }
+        .nav_links_active,.nav_links:hover{
+          transform: translateY(-10px);
+        }
+    }
+
+}
+.slide_nav_lower{
+    height: 20%;
+    width: 100%;
+    padding: 0 20px;
+    max-width: 300px;
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+        opacity: 0;
+        transition: 1s ease;
+        li{
+            transform: scale(1.2);
+            transition: 0.4s ease;
+            &:hover{
+                transform: scale(1.8);
+            }
+        }
+    }
+}
+.tab_only{
+    @include mQ(big){
+        display: none;
+    }
+}
+.settings_icon{
+    cursor: pointer;
+}
+.side_nav{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100vh;
+    background-color: #000000a8;
+    z-index: 9;
+    // display: none;
+    @include mQ(big){
+        padding-right: 25px;
+    }
+    @include mQ(tablet){
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 70px;
+        // background-color: rgb(128, 0, 128);
+    }
+    .main_side_nav{
+        // padding-right: 25px;
+        height: 70%;
+        max-height: 600px;
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-evenly;
+        align-items: center;
+        @include mQ(tablet){
+            margin: auto;
+            flex-direction: row-reverse !important;
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            justify-content: space-around;
+        }
+    }
+    .secondary_side_nav{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 150px;
+        padding-right: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        @include mQ(tablet){
+            display: none;
+        }
+    }
+}
+.slide_hide{
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.4s ease;
+}
+.burger{
+    cursor: pointer;
+    @include mQ(big){
+        position: absolute;
+        top: 45px;
+        right: 50px;
+        z-index: 99;
+    }
+    .rect{
+        margin-bottom: 4px;
+        height: 3px;
+        width: 30px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 2px;
+        transition: 0.4s ease-in-out;
+    }
+    .rect2{
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            height: 3px;
+            width: 15px;
+            background-color: $secondary2;
+        }
+    }
+}
+//----------- addition classes
+.navigation_section_scroll{
+    padding: 15px 50px;
+    transition: 0.4s ease;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.13);
+}
+.bgTrans{
+    @include mQ(big){transition: 0.4s ease;
+    background: transparent;}
+}
+.active_nav{
+    clip-path: circle(100%);
+    z-index: 1;
+    transition: 0.4s ease;
+    @include mQ(big){
+        // z-index: 10;
+        transition: 0.4s ease;
+        transform: translateX(-100%);
+    }
+    .menu{
+        li{
+            opacity: 1;
+            // transform: translateY(20px);
+            @include mQ(tablet){
+                transform: translateY(-20px);
+            }
+        }
+    }
+    .slide_nav_lower{
+        ul{
+            opacity: 1;
+            // transform: translateY(20px);
+            @include mQ(tablet){
+                transform: translateY(-20px);
+            }
+        }
+    }
+}
+.burger_transform{
+    .rect{
+        background-color: $secondary1;
+        transform-origin: 10px;
+        transform: rotate(45deg);
+        transition: 0.4s ease-in-out;
+    }
+    .rect2{
+        transform: rotate(-45deg);
+        &::after{
+            opacity: 0;
+        }
+    }
+}
+
+.hide{
+    @include mQ(big){opacity: 0;
+    pointer-events: none;}
+}

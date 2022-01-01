@@ -1,0 +1,215 @@
+@import "./config";
+
+.navigation_section{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    padding: 30px 50px;
+    z-index: 9;
+}
+nav{
+    height: 100vh;
+    width: 60%;
+    max-width: 500px;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    transition: 0.4s ease-in;
+    clip-path: circle(0% at 100% 25px);
+    @include mQ(tablet){
+        clip-path: circle(0% at calc(100% - 105px) 100%);
+    }
+}
+.menu{
+    margin: 70px 0 100px;
+    height: 50%;
+    width: 100%;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    li{
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transition: 1s ease;
+        transform: translateY(-20px);
+        @include mQ(tablet){
+            transform: translateY(20px);
+        }
+        .nav_links{
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            transition: 0.4s ease-in-out;
+            &::after{
+                content: "";
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 3px;
+                width: 30px;
+                background-color: red;
+                opacity: 0;
+                transition: 0.4s ease-in-out;
+            }
+        }
+        .nav_links_active::after,.nav_links:hover::after{
+            bottom: -10px;
+            opacity: 1;
+        }
+        .nav_links_active,.nav_links:hover{
+          transform: translateY(-10px);
+        }
+    }
+
+}
+.social{
+    height: 20%;
+    width: 100%;
+    padding: 0 20px;
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+        opacity: 0;
+        transition: 1s ease;
+    }
+}
+.social_nav{
+    max-width: 300px;
+    ul{
+        li{
+            transform: scale(1.2);
+            transition: 0.4s ease;
+            &:hover{
+                transform: scale(1.8);
+            }
+        }
+    }
+}
+
+.side_nav{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100vh;
+    background-color: rgb(128, 0, 128);
+    z-index: 9;
+    @include mQ(tablet){
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+    }
+    .main_side_nav{
+        padding-right: 25px;
+        height: 70%;
+        max-height: 600px;
+        margin-top: -40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        @include mQ(tablet){
+            margin: auto;
+            flex-direction: row-reverse !important;
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            justify-content: space-around;
+        }
+    }
+    .secondary_side_nav{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 150px;
+        padding-right: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        @include mQ(tablet){
+            display: none;
+        }
+    }
+}
+.burger{
+    cursor: pointer;
+    @include mQ(big){
+        position: absolute;
+        top: 45px;
+        right: 50px;
+    }
+    .rect{
+        margin-bottom: 4px;
+        height: 3px;
+        width: 30px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 2px;
+        transition: 0.4s ease-in-out;
+    }
+    .rect2{
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            height: 3px;
+            width: 15px;
+            background-color: red;
+        }
+    }
+}
+//----------- addition classes
+.navigation_section_scroll{
+    background: rgba(255, 255, 255, 0.37);
+}
+.active_nav{
+    clip-path: circle(100%);
+    z-index: 10;
+    .menu{
+        li{
+            opacity: 1;
+            transform: translateY(20px);
+            @include mQ(tablet){
+                transform: translateY(-20px);
+            }
+        }
+    }
+    .social{
+        ul{
+            opacity: 1;
+            transform: translateY(20px);
+            @include mQ(tablet){
+                transform: translateY(-20px);
+            }
+        }
+    }
+}
+.burger_transform{
+    .rect{
+        background-color: white;
+        transform-origin: 10px;
+        transform: rotate(45deg);
+        transition: 0.4s ease-in-out;
+    }
+    .rect2{
+        transform: rotate(-45deg);
+        &::after{
+            opacity: 0;
+        }
+    }
+}

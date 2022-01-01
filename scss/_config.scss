@@ -1,0 +1,63 @@
+*{
+    margin:0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+$primary1:black;
+$primary2:rgb(34, 34, 34);
+$secondary1:white;
+$secondary2:red;
+// $secondary2:#262646;
+// rocket bg----- #bcfa7b
+
+// -------------mixin
+@mixin mQ($args) {
+    @if $args == phone{
+        @media( max-width:$small){
+            @content;
+        }
+    }@else if $args == tablet{
+        @media(max-width:$mid){
+            @content;
+        }
+    }@else if $args == big{
+        @media(min-width:$mid){
+            @content
+        }
+    }
+}
+// ------screen
+$small:480px;
+$mid:860px;
+
+.w-100{
+    max-width: 200px !important;
+}
+.heading{
+    margin: 0 0 20px;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.658);
+    @include mQ(phone){
+        margin: 0 0 10px;
+    }
+}
+.heading_large{
+    font-size: 7em;
+    @include mQ(tablet){
+        font-size: 5em;
+    }
+    @include mQ(phone){
+        font-size: 4em;
+    }
+}
+.heading_mid{
+    font-size: 5em;
+    @include mQ(tablet){
+        font-size: 3em;
+    }
+    @include mQ(phone){
+        font-size: 1.5em;
+    }
+}

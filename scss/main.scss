@@ -1,0 +1,267 @@
+@import "./config";
+@import "./menu2";
+body{
+    position: relative;
+    background: url("../resources/images/backgroundPattern.png");
+    background-size: contain;
+    overflow-x: hidden;
+}
+.hero_section{
+    height: 100vh;
+    width: 100%;  
+}
+.intro_container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    // background: linear-gradient(to right,$primary1,rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle at 0% 0% , $primary1,rgba(255, 255, 255, 0));
+    // background-origin: ;
+    @include mQ(phone){
+        // background: linear-gradient(to right,$primary1,rgba(255, 255, 255, 0) 70%,$primary1);
+        background: rgba(0, 0, 0, 0.384);
+    }
+}
+.intro_left{
+    padding-top: 200px;
+    margin-left: 50px;
+    color: $secondary1;
+    @include mQ(phone){
+        margin-left: 25px;
+    }
+    h5{
+        font-size: 1.2em;
+        font-weight: 100;
+        text-shadow: 0 10px 30px rgb(0, 0, 0);
+        @include mQ(phone){
+            font-size: 0.9em;
+        }
+    }
+    p{
+        font-size: 1em;
+        font-weight: 300;
+        max-width: 600px;
+        line-height: 25px;
+        margin-bottom: 50px;
+        @include mQ(phone){
+            font-size: 0.9em;
+            line-height: 20px;
+        }
+    }
+    a{
+        padding: 10px 30px;
+        border: 2px solid $secondary1;
+        color: $secondary1;
+        position: relative;
+        border-radius: 20px;
+        transition: 0.6s ease;
+        &:hover{
+            border: 2px solid rgba(255, 255, 255, 0.048);
+            background: rgba(255, 255, 255, 0.116);
+        }
+        &::before,&::after{
+            content: "";
+            position: absolute;
+        }
+        &::before{
+            top: 50%;
+            transform: translateY(-50%);
+            right: -30px;
+            height: 60px;
+            width: 20px;
+            background: rgba(46, 46, 46, 0.267);
+            border-radius: 20px;
+        }
+        &::after{
+            // top: -7px;
+            right: -28px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: $secondary2;
+            animation: 2s
+                cubic-bezier(0.88, 0.32, 0.57, 1.4)
+                infinite alternate 
+                translate;
+        }
+        @include mQ(phone){
+            padding: 5px 15px;
+            &::before{
+                right: -20px;
+                width: 15px;
+                height: 40px;
+            }
+            &::after{
+                right: -18px;
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+}
+.intro_right{
+    // width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    height: calc(100vh + 5px);
+    img{
+        height: 100%;
+    }
+}
+
+
+.bg_blur{
+    // display: none;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: 0.4s ease;
+    z-index: -1;
+}
+.settings_section{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 60%;
+    width: 60%;
+    padding: 20px 20px;
+    background-color: rgba(0, 0, 0, 0.699);
+    border-radius: 20px;
+    filter: blur(0px);
+    transition: 0.4s ease;
+    z-index: -1;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.068);
+    .close_settings{
+        width: max-content;
+        margin-left: auto;
+        ion-icon{
+            cursor: pointer;
+        }
+    }
+}
+.services_section{
+    margin: auto;
+    padding-top: 100px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.52);
+    
+}
+.service_header{
+    margin: auto;
+    color: $secondary1;
+    position: relative;
+    width: max-content;
+    // min-width: 300px;
+    // @include mQ(big){
+        &::after,&::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            // left: -40px;
+            height: 2px;
+            width: 20%;
+            background: red;
+            border-radius: 1px;
+        }
+        &::before{
+            // left: 100%;
+            left: calc(100% + 20px);
+        }
+        &::after{
+            // right: 100%;
+            right: calc(100% + 20px);
+        }
+
+    // }
+}
+.service_grid_container{
+    width: 80%;
+    height: 500px;
+    padding: 20px;
+    margin: auto;
+    background: rgba(54, 54, 54, 0.596);
+    display: grid;
+    // place-items: center;
+    grid-gap: 20px;
+    grid-template-areas: 
+    "grid1 grid2 grid3"
+    "grid4 grid5 grid6"
+    ;
+    @include mQ(tablet){
+        grid-template-areas: 
+        "grid1 grid2"
+        "grid3 grid4"
+        "grid5 grid6"
+        ;  
+    }
+    @include mQ(phone){
+        grid-template-areas: 
+        "grid1" "grid2"
+        "grid3" "grid4"
+        "grid5" "grid6"
+        ;  
+    }
+}
+.grid{
+    // height: 40%;
+    // width: 20%;
+    background-color: rgb(24, 24, 24);
+}
+.grid1{
+    grid-area: "grid1";
+}
+.grid2{
+    grid-area: "grid2";
+}
+.grid3{
+    grid-area: "grid3";
+}
+.grid4{
+    grid-area: "grid4";
+}
+.grid5{
+    grid-area: "grid5";
+}
+.grid6{
+    grid-area: "grid6";
+}
+
+
+
+
+
+
+
+// ----------js added classes
+
+// .body_blur{
+    
+// }
+
+.display{
+    opacity: 1;
+    z-index: 99;
+    transition: 0.4s ease;
+}
+.body_fixed{
+    overflow: hidden !important;
+}
+// ----------------- animations
+@keyframes translate{
+    from{
+        top: 0px;
+    }
+    to{
+        top: calc(100% - 10px);
+    }
+}
